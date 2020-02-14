@@ -10,14 +10,26 @@ namespace homework_2
     {
         static void Main(string[] args)
         {
+            bool rightEnter = false;
             //Number 1
             Console.WriteLine("Найти сумму чётных чисел.");
-            int a;
             Console.WriteLine("Введите число:");
+            int a;
+
             string str = Console.ReadLine();
-            a = Convert.ToInt32(str);
+            rightEnter = int.TryParse(str, out a);
+
+            while(!rightEnter)
+            {
+                Console.WriteLine("Вы ввели неправильное значение. Попробуйте снова!");
+                str = Console.ReadLine();
+                rightEnter = int.TryParse(str, out a);
+            }
+
+            //int a = Convert.ToInt32(str);
             int sum = 0;
             int b = a;
+
             while(a != 0)
             {
                 int rest = a % 10;
@@ -29,42 +41,68 @@ namespace homework_2
             Console.WriteLine($"Сумма четных цифр числа {b} равна {sum}\n\n");
 
             //Number 2
+            bool rightEnter1 = false;
+            bool rightEnter2 = false;
+            int number1, number2;
+
             Console.WriteLine("Сделать умножение чисел друг на друга через сумму.");
             Console.WriteLine("Введите первое число:");
             string str1 = Console.ReadLine();
             Console.WriteLine("Введите второе число:");
             string str2 = Console.ReadLine();
-            int number1 = Convert.ToInt32(str1);
-            int number2 = Convert.ToInt32(str2);
-            int prod = 0;
-            for(int i = 0; i < number2; i++)
+            rightEnter1 = int.TryParse(str1, out number1);
+            rightEnter2 = int.TryParse(str2, out number2);
+
+            while (!rightEnter1)
             {
-                prod = prod + number1;
+                Console.WriteLine("Вы ввели неправильное значение первого числа. Попробуйте снова!");
+                Console.WriteLine("Введите первое число:");
+                str1 = Console.ReadLine();
+                rightEnter1 = int.TryParse(str1, out number1);
             }
+            while (!rightEnter2)
+            {
+                Console.WriteLine("Вы ввели неправильное значение второго числа. Попробуйте снова!");
+                Console.WriteLine("Введите второе число:");
+                str2 = Console.ReadLine();
+                rightEnter2 = int.TryParse(str2, out number2);
+            }
+
+            int prod = 0;
+            if (number1 > number2)
+                for(int i = 0; i < number2; i++)
+                {
+                    prod = prod + number1;
+                }
+            else
+                for (int i = 0; i < number1; i++)
+                {
+                    prod = prod + number2;
+                }
             Console.WriteLine($"{number1} * {number2} = {prod}\n\n");
 
             //Number 3 
+            rightEnter = false;
             Console.WriteLine("Игра угадайка.");
             int from = -10;
             int to = 10;
             Random rnd = new Random();
-            int randomNumber = rnd.Next(from, to);
+            int randomNumber = rnd.Next(from, to + 1);
             //Console.WriteLine(randomNumber);
 
-            bool rightEnter = false;
             int inputNumber;
             string userInput;
             int count = 1;
 
-            Console.WriteLine("Введите число от -10 до 10: ");
+            Console.WriteLine($"Введите число от {from} до {to}: ");
             while (!rightEnter)
             {
                 Console.WriteLine("Если Вы устрали и хотите выйти, то нажмите q.");
                 userInput = Console.ReadLine();
-                char ex = Convert.ToChar(userInput);
+                //string ex = userInput;
                 rightEnter = int.TryParse(userInput, out inputNumber);
 
-                if (ex == 'q')
+                if (userInput == "q")
                 {
                     Console.WriteLine("Очень жаль :(\n\n");
                     break;
@@ -83,10 +121,21 @@ namespace homework_2
             }
 
             //Number 4
+            rightEnter = false;
+            int number;
             Console.WriteLine("Определить из каких цифр состоит число.");
             Console.WriteLine("Введите число:");
             string str3 = Console.ReadLine();
-            int number = Convert.ToInt32(str3);
+            rightEnter = int.TryParse(str3, out number);
+
+            while (!rightEnter)
+            {
+                Console.WriteLine("Вы ввели неправильное значение. Попробуйте снова!");
+                Console.WriteLine("Введите число:");
+                str3 = Console.ReadLine();
+                rightEnter = int.TryParse(str3, out number);
+            }
+
             int NumberCopy = number;
             int c = 0;
 
@@ -110,10 +159,22 @@ namespace homework_2
             Console.WriteLine("\n\n");
 
             //Number 5
+            rightEnter = false;
+            int abc;
             Console.WriteLine("Перевернуть число.");
             Console.Write("Ваше число: ");
             string str4 = Console.ReadLine();
-            int abc = Convert.ToInt32(str4);
+            rightEnter = int.TryParse(str4, out abc);
+            //int abc = Convert.ToInt32(str4);
+
+            while (!rightEnter)
+            {
+                Console.WriteLine("Вы ввели неправильное значение. Попробуйте снова!");
+                Console.WriteLine("Введите число:");
+                str3 = Console.ReadLine();
+                rightEnter = int.TryParse(str3, out abc);
+            }
+
             int cba = 0;
             while(abc != 0)
             {
